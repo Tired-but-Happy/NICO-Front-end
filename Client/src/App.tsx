@@ -1,18 +1,23 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LandingPage from "src/pages/LandingPage";
+import { GlobalStyles } from "src/styles/GlobalStyles.styled";
 import initContract from "src/near/utils";
-import Home from "src/pages/Home";
+import Layout from "src/components/layout";
 
-function App() {
+const App = () => {
     initContract();
     return (
         <>
+            <GlobalStyles />
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route element={<Layout />}>
+                        <Route path="/" element={<LandingPage />} />
+                    </Route>
                 </Routes>
             </BrowserRouter>
         </>
     );
-}
+};
 
 export default App;
