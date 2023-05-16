@@ -28,7 +28,6 @@ export const Group28 = styled.div`
 `;
 
 export const BlockNum = styled.span`
-    color: rgb(60, 60, 64);
     text-overflow: ellipsis;
     font-size: 20px;
     font-family: Poppins, sans-serif;
@@ -45,7 +44,6 @@ export const BlockNum = styled.span`
 `;
 
 export const BlockTime = styled.span`
-    color: rgb(195, 195, 195);
     text-overflow: ellipsis;
     font-size: 16px;
     font-family: Poppins, sans-serif;
@@ -62,7 +60,6 @@ export const BlockTime = styled.span`
 `;
 
 export const AuthourText = styled.span`
-    color: black;
     text-overflow: ellipsis;
     font-size: 20px;
     font-family: Poppins, sans-serif;
@@ -153,7 +150,6 @@ export const Frame28 = styled.div`
 `;
 
 export const Authour = styled.span`
-    color: rgb(157, 153, 160);
     text-overflow: ellipsis;
     font-size: 20px;
     font-family: Poppins, sans-serif;
@@ -189,7 +185,6 @@ export const Txn = styled.span`
 `;
 
 export const TxnText = styled.span`
-    color: rgb(60, 60, 64);
     text-overflow: ellipsis;
     font-size: 20px;
     font-family: Poppins, sans-serif;

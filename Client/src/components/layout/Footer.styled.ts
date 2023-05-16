@@ -36,7 +36,6 @@ export const FooterIcon = styled.svg`
 `;
 
 export const WhatIsNico = styled.span`
-    color: black;
     text-overflow: ellipsis;
     font-size: 28px;
     font-family: Poppins, sans-serif;
@@ -49,7 +48,7 @@ export const WhatIsNico = styled.span`
     width: 201px;
     height: 42px;
     line-height: 42px;
-    color: #000000;
+    color: var(--neutre-Black);
 `;
 
 export const GithubIconBox = styled.div`

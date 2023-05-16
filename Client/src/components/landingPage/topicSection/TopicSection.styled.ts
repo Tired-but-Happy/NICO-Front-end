@@ -15,7 +15,6 @@ export const Icon = styled.div`
 `;
 
 export const HotFeed = styled.span`
-    color: black;
     text-overflow: ellipsis;
     font-size: 28px;
     font-family: Poppins, sans-serif;
