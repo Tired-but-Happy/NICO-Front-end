@@ -1,7 +1,15 @@
+import { useEffect, useCallback, useState } from "react";
+import type { AccountState, WalletSelector } from "@near-wallet-selector/core";
+import { setupWalletSelector } from "@near-wallet-selector/core";
+import { WalletSelectorModal, setupModal } from "@near-wallet-selector/modal-ui";
+import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
+import { setupNearWallet } from "@near-wallet-selector/near-wallet";
+import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
+import { setupHereWallet } from "@near-wallet-selector/here-wallet";
+
 import {
     About,
     Blockchain,
-    Ellipse10,
     Frame1,
     Frame16,
     Frame5,
@@ -15,10 +23,63 @@ import {
     SupernicoNear,
     Vector_0012,
     YellowBlock,
-    _1,
 } from "src/components/layout/Navbar.styled";
+import { CONTRACT_ID } from "src/utils/constants";
+
+declare global {
+    interface Window {
+        selector: WalletSelector;
+        modal: WalletSelectorModal;
+    }
+}
 
 const Naver = () => {
+    const [selector, setSelector] = useState<WalletSelector | null>(null);
+    const [modal, setModal] = useState<WalletSelectorModal | null>(null);
+    const [accounts, setAccounts] = useState<Array<AccountState>>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+
+    const init = useCallback(async () => {
+        const _selector = await setupWalletSelector({
+            network: "testnet",
+            debug: true,
+            modules: [
+                setupMyNearWallet(),
+                setupNearWallet(),
+                setupMeteorWallet(),
+                setupHereWallet(),
+            ],
+        });
+        const _modal = setupModal(_selector, {
+            contractId: CONTRACT_ID,
+        });
+        const state = _selector.store.getState();
+        console.log(state);
+        setAccounts(state.accounts);
+
+        // this is added for debugging purpose only
+        // for more information (https://github.com/near/wallet-selector/pull/764#issuecomment-1498073367)
+        window.selector = _selector;
+        window.modal = _modal;
+
+        setSelector(_selector);
+        setModal(_modal);
+        setLoading(false);
+    }, []);
+
+    useEffect(() => {
+        init().catch((err) => {
+            console.error(err);
+            alert("Failed to initialise wallet selector");
+        });
+    }, [init]);
+
+    const onClickSignIn = useCallback(() => {
+        if (modal) {
+            modal.show();
+        }
+    }, [modal]);
+
     return (
         <>
             <NavbarBefore>
@@ -31,7 +92,7 @@ const Naver = () => {
                         <Blockchain>Blockchain</Blockchain>
                     </Frame5>
                     {true ? (
-                        <Frame1>
+                        <Frame1 onClick={onClickSignIn}>
                             <SignIn>Sign in</SignIn>
                         </Frame1>
                     ) : (
