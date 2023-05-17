@@ -83,9 +83,13 @@ export const Frame1 = styled.div`
     flex: none;
     gap: 10px;
     border-radius: 40px;
-    background-color: rgb(193, 116, 255);
+    background-color: var(--secondaryColor-Purple-300);
     box-sizing: border-box;
     padding: 10px 48px;
+    &:hover {
+        background-color: var(--secondaryColor-Purple-200);
+        cursor: pointer;
+    }
 `;
 
 export const SignIn = styled.span`
@@ -101,4 +105,101 @@ export const SignIn = styled.span`
     flex: none;
     order: 0;
     flex-grow: 0;
+`;
+
+export const Group21 = styled.div`
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+`;
+
+export const Ellipse10 = styled.div`
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 60px / 60px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+`;
+
+export const _1 = styled.img`
+    width: 33px;
+    height: 33px;
+    object-fit: cover;
+    position: absolute;
+    left: 14px;
+    top: 14px;
+`;
+
+export const SupernicoNear = styled.span`
+    text-overflow: ellipsis;
+    font-size: 28px;
+    font-family: Poppins, sans-serif;
+    font-weight: 600;
+    text-align: center;
+    position: absolute;
+    left: 80px;
+    top: 5px;
+    width: 216px;
+    height: 42px;
+    line-height: 42px;
+    color: var(--neutre-Black);
+`;
+
+export const Frame16 = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: none;
+    gap: 10px;
+    border: solid 2px rgb(182, 181, 183);
+    border-radius: 56px;
+    background-color: rgb(254, 252, 201);
+    box-sizing: border-box;
+    padding-bottom: 11px;
+    padding-top: 11px;
+    padding-left: 16px;
+    padding-right: 40px;
+`;
+
+export const Group14 = styled.div`
+    width: 360px;
+    height: 60px;
+    position: relative;
+`;
+
+export const ArrowDownBox = styled.div`
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    position: absolute;
+    left: 336px;
+    top: 18px;
+`;
+
+export const Vector_0012 = styled.img`
+    width: 22px;
+    position: absolute;
+    left: 1px;
+    top: 0px;
+    right: 1px;
+    bottom: 5px;
+`;
+
+export const Frame3 = styled.div`
+    width: 180px;
+    height: 112px;
+    overflow: hidden;
+    background-color: white;
+    position: relative;
+`;
+
+export const YellowBlock = styled.img`
+    position: absolute;
+    width: 60px;
+    height: 60px;
 `;

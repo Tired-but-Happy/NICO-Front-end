@@ -1,17 +1,20 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import BackGround from "src/components/layout/BackGround";
 import Footer from "src/components/layout/Footer";
-import Naver from "src/components/layout/Naver";
+import Navbar from "src/components/layout/Navbar";
 
-const Layout = () => {
+const MainLayout = () => {
+    const location = useLocation();
+
     return (
         <>
-            <BackGround />
-            <Naver />
+            {location.pathname == "/account" ? <></> : <BackGround />}
+
+            <Navbar />
             <Outlet />
             <Footer />
         </>
     );
 };
 
-export default Layout;
+export default MainLayout;
