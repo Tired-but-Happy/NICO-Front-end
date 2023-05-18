@@ -26,6 +26,7 @@ import {
     YellowBlock,
 } from "src/components/layout/Navbar.styled";
 import { CONTRACT_ID } from "src/utils/constants";
+import usePostLogin from "src/hooks/useText";
 
 declare global {
     interface Window {
@@ -34,11 +35,13 @@ declare global {
     }
 }
 
-const Naver = () => {
+const Navbar = () => {
     const [selector, setSelector] = useState<WalletSelector | null>(null);
     const [modal, setModal] = useState<WalletSelectorModal | null>(null);
     const [accounts, setAccounts] = useState<Array<AccountState>>([]);
     const [loading, setLoading] = useState<boolean>(true);
+
+    const { data } = usePostLogin({ userAddress: accounts[0]?.accountId });
 
     const init = useCallback(async () => {
         const _selector = await setupWalletSelector({
@@ -65,7 +68,6 @@ const Naver = () => {
         });
         const state = _selector.store.getState();
         setAccounts(state.accounts);
-        console.log(state.accounts);
 
         // this is added for debugging purpose only
         // for more information (https://github.com/near/wallet-selector/pull/764#issuecomment-1498073367)
@@ -83,6 +85,14 @@ const Naver = () => {
             alert("Failed to initialise wallet selector");
         });
     }, [init]);
+
+    useEffect(() => {
+        if (data) {
+            localStorage.setItem("accessToken", data as string);
+        } else {
+            localStorage.removeItem("accessToken");
+        }
+    }, [data]);
 
     const onClickSignIn = useCallback(() => {
         if (modal) {
@@ -127,7 +137,7 @@ const Naver = () => {
                                     <YellowBlock src="src/assets/profile/yellow_block_s.svg" />
                                 </Group21>
                                 <SupernicoNear>
-                                    {accounts && <>{accounts[0].accountId.substr(0, 12)}.....</>}
+                                    {/* {data && <>{data.substr(0, 12)}.....</>} */}
                                 </SupernicoNear>
                             </Group14>
                         </Frame16>
@@ -138,4 +148,4 @@ const Naver = () => {
     );
 };
 
-export default Naver;
+export default Navbar;
