@@ -6,6 +6,7 @@ import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet";
 import { setupNearWallet } from "@near-wallet-selector/near-wallet";
 import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet";
 import { setupHereWallet } from "@near-wallet-selector/here-wallet";
+import { setupWalletConnect } from "@near-wallet-selector/wallet-connect";
 
 import {
     About,
@@ -48,14 +49,23 @@ const Naver = () => {
                 setupNearWallet(),
                 setupMeteorWallet(),
                 setupHereWallet(),
+                setupWalletConnect({
+                    projectId: "c4f79cc...",
+                    metadata: {
+                        name: "NEAR Wallet Selector",
+                        description: "Example dApp used by NEAR Wallet Selector",
+                        url: "https://github.com/near/wallet-selector",
+                        icons: ["https://avatars.githubusercontent.com/u/37784886"],
+                    },
+                }),
             ],
         });
         const _modal = setupModal(_selector, {
             contractId: CONTRACT_ID,
         });
         const state = _selector.store.getState();
-        console.log(state);
         setAccounts(state.accounts);
+        console.log(state.accounts);
 
         // this is added for debugging purpose only
         // for more information (https://github.com/near/wallet-selector/pull/764#issuecomment-1498073367)
@@ -80,6 +90,18 @@ const Naver = () => {
         }
     }, [modal]);
 
+    const handleSignOut = useCallback(async () => {
+        if (selector) {
+            const wallet = await selector.wallet();
+
+            wallet.signOut().catch((err) => {
+                console.log("Failed to sign out");
+                console.error(err);
+            });
+            location.reload();
+        }
+    }, [selector]);
+
     return (
         <>
             <NavbarBefore>
@@ -91,12 +113,12 @@ const Naver = () => {
                     <Frame5>
                         <Blockchain>Blockchain</Blockchain>
                     </Frame5>
-                    {true ? (
+                    {Array.isArray(accounts) && accounts.length === 0 ? (
                         <Frame1 onClick={onClickSignIn}>
                             <SignIn>Sign in</SignIn>
                         </Frame1>
                     ) : (
-                        <Frame16>
+                        <Frame16 onClick={handleSignOut}>
                             <Group14>
                                 <ArrowDownBox>
                                     <Vector_0012 src="src/assets/layout/arrow_down.svg" />
@@ -104,7 +126,9 @@ const Naver = () => {
                                 <Group21>
                                     <YellowBlock src="src/assets/profile/yellow_block_s.svg" />
                                 </Group21>
-                                <SupernicoNear>supernico.near</SupernicoNear>
+                                <SupernicoNear>
+                                    {accounts && <>{accounts[0].accountId.substr(0, 12)}.....</>}
+                                </SupernicoNear>
                             </Group14>
                         </Frame16>
                     )}

@@ -1,7 +1,6 @@
 import { styled } from "styled-components";
 
 export const PriceSection = styled.span`
-    z-index: 99;
     color: var(--neutre-Grey-300);
     text-overflow: ellipsis;
     font-size: 28px;
@@ -18,7 +17,6 @@ export const PriceSection = styled.span`
 `;
 
 export const BtcSection = styled.span`
-    z-index: 99;
     color: var(--neutre-Grey-250);
     text-overflow: ellipsis;
     font-size: 16px;
