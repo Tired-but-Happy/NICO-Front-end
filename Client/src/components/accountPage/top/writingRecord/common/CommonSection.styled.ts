@@ -62,6 +62,7 @@ export const Vector_0001 = styled.svg`
     right: 2px;
     bottom: 2px;
 `;
+
 export const _3HAgo = styled.span`
     color: rgb(184, 178, 189);
     text-overflow: ellipsis;
@@ -92,13 +93,16 @@ export const List_0002 = styled.div`
 `;
 
 export const MyWritting = styled.span`
-    color: black;
     text-overflow: ellipsis;
     font-size: 28px;
     font-family: Poppins, sans-serif;
-    font-weight: initial;
+    font-weight: 600;
     text-align: left;
     position: absolute;
     left: 0px;
     top: 0px;
+    width: 159px;
+    height: 42px;
+    line-height: 42px;
+    color: var(--neutre-Black);
 `;
