@@ -1,3 +1,4 @@
+import { FC } from "react";
 import {
     Category,
     Rectangle66,
@@ -36,8 +37,12 @@ import {
     Tag_0014,
     Full,
 } from "src/components/accountPage/bottom/Contents.styled";
+import useGetAccountTx from "src/hooks/useGetAccountTx";
 
-const Contents = () => {
+const Contents: FC<{ state: number }> = ({ state }) => {
+    const { data } = useGetAccountTx({ account: "m0on.near" });
+    console.log(state);
+
     return (
         <>
             {/* header */}
@@ -96,11 +101,14 @@ const Contents = () => {
             </Category>
 
             {/* table */}
+            {/* {data &&
+                data.map((v) => (
+                ))} */}
             <ContentsAccessKey>
                 <Component67>
                     <Section>
                         <Rectangle59_0007 />
-                        <ContentText>92020202B3N...</ContentText>
+                        <ContentText>...</ContentText>
                     </Section>
                 </Component67>
                 <Component69>

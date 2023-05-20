@@ -22,3 +22,20 @@ export const postLogin = (userAddress: string) =>
             userAddress,
         },
     });
+
+export const getAccountTx = (account: string) =>
+    exampleInstance({
+        url: `https://api.pikespeak.ai/account/transactions/${account}`,
+        method: "get",
+        headers: {
+            accept: "application/json",
+            "x-api-key": "20e2fecb-7f5d-4a7d-ad60-6751196ec5ce",
+        },
+    });
+
+export const getAccountInfo = (accountInfo: string) =>
+    exampleInstance({
+        url: `/mypage/${accountInfo}`,
+        method: "get",
+        headers: {},
+    });

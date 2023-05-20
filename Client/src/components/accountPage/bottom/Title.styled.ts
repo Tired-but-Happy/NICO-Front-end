@@ -25,6 +25,9 @@ export const Tag_0003 = styled.div`
     background-color: rgb(216, 213, 218);
     box-sizing: border-box;
     padding: 16px 24px;
+    &:hover {
+        background-color: var(--neutre-Grey-200);
+    }
 `;
 
 export const Tag_0006 = styled.div`
@@ -35,9 +38,12 @@ export const Tag_0006 = styled.div`
     flex: none;
     gap: 10px;
     border-radius: 12px;
-    background-color: rgb(60, 60, 64);
+    background-color: rgb(216, 213, 218);
     box-sizing: border-box;
     padding: 16px 24px;
+    &:hover {
+        background-color: var(--neutre-Grey-200);
+    }
 `;
 
 export const MyProfile_0007 = styled.span`
