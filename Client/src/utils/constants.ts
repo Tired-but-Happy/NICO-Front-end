@@ -1,1 +1,1 @@
-export const CONTRACT_ID = "asdfasdfasfd.testnet" as const;
+export const CONTRACT_ID = "last-last.testnet" as const;
