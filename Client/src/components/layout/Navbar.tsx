@@ -85,6 +85,10 @@ const Navbar = () => {
             setWalletSelector(_selector);
             setAccount(state.accounts);
         }
+        const isAccountPage = window.location.search.includes("username");
+
+        if (!isAccountPage && state.accounts.length > 0)
+            window.location.href = `/account?username=${state.accounts[0].accountId}`;
     }, []);
 
     useEffect(() => {
@@ -107,6 +111,10 @@ const Navbar = () => {
             modal.show();
         }
     }, [modal]);
+
+    useEffect(() => {
+        console.log("*********");
+    }, []);
 
     const handleSignOut = useCallback(async () => {
         if (selector) {
@@ -146,9 +154,7 @@ const Navbar = () => {
                                 <Group21>
                                     <YellowBlock src="src/assets/profile/yellow_block_s.svg" />
                                 </Group21>
-                                <SupernicoNear>
-                                    {/* {data && <>{data.substr(0, 12)}.....</>} */}
-                                </SupernicoNear>
+                                <SupernicoNear>{accounts[0].accountId}</SupernicoNear>
                             </Group14>
                         </Frame16>
                     )}

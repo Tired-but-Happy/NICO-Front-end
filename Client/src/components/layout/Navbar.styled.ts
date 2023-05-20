@@ -142,7 +142,7 @@ export const SupernicoNear = styled.span`
     text-align: center;
     position: absolute;
     left: 80px;
-    top: 5px;
+    top: 10px;
     width: 216px;
     height: 42px;
     line-height: 42px;
