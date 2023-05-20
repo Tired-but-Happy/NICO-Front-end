@@ -22,7 +22,7 @@ import {
     Ellipse20,
     BabyNewbie,
     ProfileText,
-} from "./BadgesSection.styled";
+} from "src/components/accountPage/top/badges/BadgesSection.styled";
 
 const BadgesSection = () => {
     return (

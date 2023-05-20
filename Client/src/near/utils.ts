@@ -1,18 +1,15 @@
 import { connect } from "near-api-js";
 import connectionConfig from "./config";
+import { AccountView } from "near-api-js/lib/providers/provider";
 
-const initContract = async () => {
-    // Set a connection to the NEAR network
+const getAccountDetail = async (accountId: string) => {
     const near = await connect(connectionConfig);
-
-    // const blockInfo = await near.connection.provider.block({
-    //     finality: "final",
-    // });
-    // const response = await near.connection.provider.block({ blockId: 100000000 });
-    // console.log(response);
-
-    // console.log(blockInfo);
-    return near;
+    const accountDetail = await near.connection.provider.query<AccountView>({
+        request_type: "view_account",
+        account_id: accountId,
+        finality: "final",
+    });
+    console.log(accountDetail);
 };
 
-export default initContract;
+export default getAccountDetail;

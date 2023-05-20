@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom";
+import queryString from "query-string";
 import {
     Balance,
     Frame24,
@@ -23,11 +25,19 @@ import {
     CopyBox,
     ArrowDownIcon,
 } from "src/components/accountPage/top/profile/center/CenterSection.styled";
+import useGetAccountInfo from "src/hooks/useAccountInfo";
 
 const CenterSection = () => {
+    const location = useLocation();
+    const query = queryString.parse(location.search);
+    console.log(query.accountName);
+
+    const { data } = useGetAccountInfo({ accountInfo: query.accountName });
+    console.log(data);
+
     return (
         <>
-            <Supernico>Supernico</Supernico>
+            <Supernico>Nearian</Supernico>
             <TagLevel>
                 <Lv1>Lv.1</Lv1>
             </TagLevel>

@@ -1,9 +1,9 @@
 import { GlobalStyles } from "src/styles/GlobalStyles.styled";
-import initContract from "src/near/utils";
 import Router from "src/Router";
+import getAccountDetail from "src/near/utils";
 
 const App = () => {
-    initContract();
+    getAccountDetail("park_test_test.testnet");
     return (
         <>
             <GlobalStyles />

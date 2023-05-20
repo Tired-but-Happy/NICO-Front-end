@@ -1,5 +1,16 @@
+import CommonSection from "src/components/accountPage/top/writingRecord/common";
+import { Rectangle9 } from "src/components/accountPage/top/writingRecord/WritingRecordSection.styled";
+
 const WritingRecordSection = () => {
-    return <div>WritingRecordSection</div>;
+    return (
+        <>
+            {/* left */}
+            <CommonSection />
+
+            <Rectangle9 />
+            {/* right */}
+        </>
+    );
 };
 
 export default WritingRecordSection;
