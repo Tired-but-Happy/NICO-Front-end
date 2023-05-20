@@ -4,6 +4,7 @@ use near_contract_standards::non_fungible_token::metadata::{
     NFTContractMetadata,
     NonFungibleTokenMetadataProvider,
     TokenMetadata,
+    NFT_METADATA_SPEC,
 };
 use near_contract_standards::non_fungible_token::{ Token, TokenId };
 use near_contract_standards::non_fungible_token::NonFungibleToken;
@@ -12,6 +13,8 @@ use near_contract_standards::non_fungible_token::NonFungibleToken;
 use near_sdk::borsh::{ self, BorshDeserialize, BorshSerialize };
 use near_sdk::collections::{ LazyOption, UnorderedMap };
 use near_sdk::{ env, near_bindgen, AccountId, BorshStorageKey, PanicOnDefault };
+
+const DATA_IMAGE_SVG_NEAR_ICON: &str = include_str!("../blockee.txt");
 
 #[derive(BorshSerialize, BorshStorageKey)]
 enum StorageKey {
@@ -41,6 +44,19 @@ impl NonFungibleTokenMetadataProvider for SBTContract {
 
 #[near_bindgen]
 impl SBTContract {
+    #[init]
+    pub fn new_default_meta(owner_id: AccountId) -> Self {
+        Self::new(owner_id, NFTContractMetadata {
+            spec: NFT_METADATA_SPEC.to_string(),
+            name: "Damon's test NFT".to_string(),
+            symbol: "DTN".to_string(),
+            icon: Some(DATA_IMAGE_SVG_NEAR_ICON.to_string()),
+            base_uri: Some("https://nft.storage/".to_string()),
+            reference: None,
+            reference_hash: None,
+        })
+    }
+
     #[init]
     pub fn new(owner_id: AccountId, metadata: NFTContractMetadata) -> Self {
         assert!(!env::state_exists(), "Already initialized");
