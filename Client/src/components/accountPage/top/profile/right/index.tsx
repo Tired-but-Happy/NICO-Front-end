@@ -22,11 +22,12 @@ const RightSection = () => {
     const location = useLocation();
     const query = queryString.parse(location.search);
     const { data, isLoading } = useGetMyPage({ account: query.accountname });
+    console.log(data);
 
     return (
         <>
             <OftenUsedDapp>Often Used DAPP</OftenUsedDapp>
-            {!isLoading ? (
+            {isLoading ? (
                 <>
                     <ListDapp>
                         <Frame24_0001>
@@ -86,18 +87,18 @@ const RightSection = () => {
                                         alt="image of Rectangle46"
                                     />
                                     <TokenBurrowNear>
-                                        {/* {data.usedAppList[0].appName} */}
+                                        {data && data.usedAppList[0].appName.substr(0, 12)}....
                                     </TokenBurrowNear>
                                 </Group26>
-                                {/* {data.usedAppList[0].appCategory == "nft" ? (
+                                {data && data.usedAppList[0].appCategory == "nft" ? (
                                     <NftTagIcon src="/src/assets/accountPage/nft_tag.svg" />
-                                ) : data.usedAppList[0].appCategory == "defi" ? (
+                                ) : data && data.usedAppList[0].appCategory == "defi" ? (
                                     <NftTagIcon src="/src/assets/accountPage/defi_tag.svg" />
-                                ) : data.usedAppList[0].appCategory == "gaming" ? (
+                                ) : data && data.usedAppList[0].appCategory == "gaming" ? (
                                     <NftTagIcon src="/src/assets/accountPage/gaming_tag.svg" />
                                 ) : (
-                                    <div>Others</div>
-                                )} */}
+                                    <></>
+                                )}
                             </List412>
                             <List412_0004>
                                 <Group26_0004>
@@ -106,18 +107,18 @@ const RightSection = () => {
                                         alt="image of Rectangle46"
                                     />
                                     <TokenBurrowNear>
-                                        {/* {data.usedAppList[1].appName} */}
+                                        {data && data.usedAppList[1].appName.substr(0, 12)}....
                                     </TokenBurrowNear>
                                 </Group26_0004>
-                                {/* {data.usedAppList[1].appCategory == "nft" ? (
+                                {data && data.usedAppList[1].appCategory == "nft" ? (
                                     <NftTagIcon src="/src/assets/accountPage/nft_tag.svg" />
-                                ) : data.usedAppList[1].appCategory == "defi" ? (
+                                ) : data && data.usedAppList[1].appCategory == "defi" ? (
                                     <NftTagIcon src="/src/assets/accountPage/defi_tag.svg" />
-                                ) : data.usedAppList[1].appCategory == "gaming" ? (
+                                ) : data && data.usedAppList[1].appCategory == "gaming" ? (
                                     <NftTagIcon src="/src/assets/accountPage/gaming_tag.svg" />
                                 ) : (
-                                    <div>Others</div>
-                                )} */}
+                                    <></>
+                                )}
                             </List412_0004>
                             <List412_0005>
                                 <Group26_0005>
@@ -126,18 +127,18 @@ const RightSection = () => {
                                         alt="image of Rectangle46"
                                     />
                                     <TokenBurrowNear>
-                                        {/* {data.usedAppList[2].appName} */}
+                                        {data && data.usedAppList[2].appName.substr(0, 12)}....
                                     </TokenBurrowNear>
                                 </Group26_0005>
-                                {/* {data.usedAppList[2].appCategory == "nft" ? (
+                                {data && data.usedAppList[2].appCategory == "nft" ? (
                                     <NftTagIcon src="/src/assets/accountPage/nft_tag.svg" />
-                                ) : data.usedAppList[2].appCategory == "defi" ? (
+                                ) : data && data.usedAppList[2].appCategory == "defi" ? (
                                     <NftTagIcon src="/src/assets/accountPage/defi_tag.svg" />
-                                ) : data.usedAppList[2].appCategory == "gaming" ? (
+                                ) : data && data.usedAppList[2].appCategory == "gaming" ? (
                                     <NftTagIcon src="/src/assets/accountPage/gaming_tag.svg" />
                                 ) : (
-                                    <div>Others</div>
-                                )} */}
+                                    <></>
+                                )}
                             </List412_0005>
                             <List412_0006>
                                 <Group26>
@@ -146,18 +147,18 @@ const RightSection = () => {
                                         alt="image of Rectangle46"
                                     />
                                     <TokenBurrowNear>
-                                        {/* {data.usedAppList[3].appName} */}
+                                        {data && data.usedAppList[3].appName.substr(0, 12)}....
                                     </TokenBurrowNear>
                                 </Group26>
-                                {/* {data.usedAppList[3].appCategory == "nft" ? (
+                                {data && data.usedAppList[3].appCategory == "nft" ? (
                                     <NftTagIcon src="/src/assets/accountPage/nft_tag.svg" />
-                                ) : data.usedAppList[3].appCategory == "defi" ? (
+                                ) : data && data.usedAppList[3].appCategory == "defi" ? (
                                     <NftTagIcon src="/src/assets/accountPage/defi_tag.svg" />
-                                ) : data.usedAppList[3].appCategory == "gaming" ? (
+                                ) : data && data.usedAppList[3].appCategory == "gaming" ? (
                                     <NftTagIcon src="/src/assets/accountPage/gaming_tag.svg" />
                                 ) : (
-                                    <div>Others</div>
-                                )} */}
+                                    <></>
+                                )}
                             </List412_0006>
                         </Frame24_0001>
                     </ListDapp>

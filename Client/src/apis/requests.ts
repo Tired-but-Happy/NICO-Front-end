@@ -25,12 +25,10 @@ export const postLogin = (userAddress: string) =>
 
 export const getMyPage = (account: string) =>
     exampleInstance({
-        url: `/mypage`,
+        url: `/mypage/${account}`,
         method: "get",
         headers: {},
-        data: {
-            account,
-        },
+        data: {},
     });
 
 export const getAccountTx = (account: string) =>
