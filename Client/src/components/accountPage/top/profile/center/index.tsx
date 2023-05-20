@@ -26,29 +26,70 @@ import {
     ArrowDownIcon,
 } from "src/components/accountPage/top/profile/center/CenterSection.styled";
 import useGetAccountInfo from "src/hooks/useAccountInfo";
+import useAccountDetail from "src/hooks/useAccountDetail";
+import { useEffect, useState } from "react";
 
 const CenterSection = () => {
     const location = useLocation();
     const query = queryString.parse(location.search);
-    console.log(query.accountName);
+    const [balance, setBalance] = useState("0");
+    const [address, setAddress] = useState("");
+    const [nickName, setNickName] = useState("Supernico");
+    const [loding, setLoding] = useState(false);
 
-    const { data } = useGetAccountInfo({ accountInfo: query.accountName });
-    console.log(data);
+    const dbAccount = useGetAccountInfo({ accountInfo: query.accountname });
+
+    const accountNear = useAccountDetail({ account: query.accountname });
+
+    useEffect(() => {
+        const accountData = accountNear.data;
+        if (accountData) {
+            const data = (Number(accountData.amount) / 10 ** 24).toFixed(2);
+            setBalance(data);
+        }
+    }, [accountNear]);
+
+    useEffect(() => {
+        const dbData = dbAccount.data;
+        const dbLoding = dbAccount.isLoading;
+        setLoding(dbLoding);
+        console.log(dbData);
+
+        if (dbData) {
+            setAddress(dbData.mypageInfo.userAddress);
+            if (dbData.mypageInfo.nickname) {
+                setNickName(dbData.mypageInfo.nickname);
+            }
+        }
+    }, [dbAccount.isLoading]);
 
     return (
         <>
-            <Supernico>Nearian</Supernico>
+            <Supernico>
+                {loding ? (
+                    <>
+                        <img
+                            style={{ width: "30px", marginLeft: "120px", marginBottom: "5px" }}
+                            src="/src/assets/layout/loading.gif"
+                        />
+                    </>
+                ) : address == null ? (
+                    <>Nearian</>
+                ) : (
+                    <>{nickName}</>
+                )}
+            </Supernico>
             <TagLevel>
                 <Lv1>Lv.1</Lv1>
             </TagLevel>
             <Group24>
                 <WalletIcon src="src/assets/accountPage/mdi_wallet.svg" />
                 <Group23>
-                    <WalletAccount>1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2</WalletAccount>
+                    <WalletAccount>{query.accountname}</WalletAccount>
                 </Group23>
-                <CopyBox>
+                {/* <CopyBox>
                     <CopyIcon src="src/assets/accountPage/ph_copy.svg" />
-                </CopyBox>
+                </CopyBox> */}
             </Group24>
             <Frame23>
                 <SelectTitle>What do you want to be called?</SelectTitle>
@@ -56,7 +97,18 @@ const CenterSection = () => {
             </Frame23>
             <Frame24>
                 <Balance>Balance</Balance>
-                <Eth>20,000 ETH</Eth>
+                <Eth>
+                    {balance != "0" ? (
+                        <>{balance} ETH</>
+                    ) : (
+                        <>
+                            <img
+                                style={{ width: "20px", marginLeft: "20px" }}
+                                src="/src/assets/layout/loading.gif"
+                            />
+                        </>
+                    )}
+                </Eth>
             </Frame24>
             <Frame22>
                 <Group21>
