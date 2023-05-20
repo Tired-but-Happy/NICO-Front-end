@@ -1,3 +1,5 @@
+use near_contract_standards::non_fungible_token::core::NonFungibleTokenCore;
+/** import near contract standards **/
 use near_contract_standards::non_fungible_token::metadata::{
     NFTContractMetadata,
     NonFungibleTokenMetadataProvider,
@@ -6,28 +8,12 @@ use near_contract_standards::non_fungible_token::metadata::{
 };
 use near_contract_standards::non_fungible_token::{ Token, TokenId };
 use near_contract_standards::non_fungible_token::NonFungibleToken;
+
+/** import near sdk **/
 use near_sdk::borsh::{ self, BorshDeserialize, BorshSerialize };
-use near_sdk::collections::{ LazyOption, UnorderedMap };
 use near_sdk::serde::{ Deserialize, Serialize };
-use near_sdk::{
-    env,
-    near_bindgen,
-    AccountId,
-    BorshStorageKey,
-    PanicOnDefault,
-    Promise,
-    PromiseOrValue,
-};
-
-#[near_bindgen]
-#[derive(BorshDeserialize, BorshSerialize, PanicOnDefault)]
-pub struct Contract {
-    tokens: NonFungibleToken,
-    metadata: LazyOption<NFTContractMetadata>,
-    soulbound: UnorderedMap<TokenId, bool>,
-}
-
-const DATA_IMAGE_SVG_NEAR_ICON: &str = include_str!("../blockee.txt");
+use near_sdk::collections::{ LazyOption, UnorderedMap };
+use near_sdk::{ env, near_bindgen, AccountId, BorshStorageKey, PanicOnDefault };
 
 #[derive(BorshSerialize, BorshStorageKey)]
 enum StorageKey {
@@ -36,33 +22,35 @@ enum StorageKey {
     TokenMetadata,
     Enumeration,
     Approval,
-    Soulbound,
+    SoulboundTokens,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+// #[derive(BorshDeserialize, BorshSerialize, PanicOnDefault)]
 #[serde(crate = "near_sdk::serde")]
 pub struct SoulboundToken {
     pub token: Token,
-    pub is_locked: bool,
+    pub soulbound: bool,
 }
 
 #[near_bindgen]
-impl Contract {
-    /// Initializes the contract owned by `owner_id` with
-    /// default metadata (for example purposes only).
-    #[init]
-    pub fn new_default_meta(owner_id: AccountId) -> Self {
-        Self::new(owner_id, NFTContractMetadata {
-            spec: NFT_METADATA_SPEC.to_string(),
-            name: "NICO Soulbound Token".to_string(),
-            symbol: "NSBT".to_string(),
-            icon: Some(DATA_IMAGE_SVG_NEAR_ICON.to_string()),
-            base_uri: Some("https://nft.storage/".to_string()),
-            reference: None,
-            reference_hash: None,
-        })
-    }
+#[derive(BorshDeserialize, BorshSerialize, PanicOnDefault)]
+pub struct SBTContract {
+    tokens: NonFungibleToken,
+    metadata: LazyOption<NFTContractMetadata>,
+    soulbound_tokens: UnorderedMap<TokenId, SoulboundToken>,
+    token_id_counter: u128, // for auto increasing token ID
+}
 
+#[near_bindgen]
+impl NonFungibleTokenMetadataProvider for SBTContract {
+    fn nft_metadata(&self) -> NFTContractMetadata {
+        self.metadata.get().unwrap()
+    }
+}
+
+#[near_bindgen]
+impl SBTContract {
     #[init]
     pub fn new(owner_id: AccountId, metadata: NFTContractMetadata) -> Self {
         assert!(!env::state_exists(), "Already initialized");
@@ -76,74 +64,43 @@ impl Contract {
                 Some(StorageKey::Approval)
             ),
             metadata: LazyOption::new(StorageKey::Metadata, Some(&metadata)),
-            soulbound: UnorderedMap::new(StorageKey::Soulbound),
+            token_id_counter: 0, // tokenID: start from 0
+            soulbound_tokens: UnorderedMap::new(StorageKey::SoulboundTokens.try_to_vec().unwrap()),
         }
     }
 
     #[payable]
     pub fn sbt_mint(
         &mut self,
-        token_id: TokenId,
         receiver_id: AccountId,
-        token_metadata: TokenMetadata,
-        is_locked: bool
+        token_metadata: TokenMetadata
     ) -> SoulboundToken {
-        assert_eq!(env::predecessor_account_id(), self.tokens.owner_id, "Unauthorized");
+        // assert_eq!(env::predecessor_account_id(), self.tokens.owner_id, "Unauthorized"); //TODO: 권한이 필요할까?
 
+        self.token_id_counter += 1;
+        let token_id = self.token_id_counter.to_string();
         let token = self.tokens.internal_mint(token_id.clone(), receiver_id, Some(token_metadata));
         let soulbound_token = SoulboundToken {
             token: token.clone(),
-            is_locked,
+            soulbound: true,
         };
-        self.soulbound.insert(&token_id, &soulbound_token.is_locked);
+        self.soulbound_tokens.insert(&token_id, &soulbound_token); // !insert Error!
+
         soulbound_token
     }
 
-    /// Check if a token is soulbound.
-    pub fn is_token_soulbound(&self, token_id: TokenId) -> bool {
-        self.soulbound.get(&token_id).unwrap_or(false)
+    #[payable]
+    pub fn sbt_transfer(&mut self, token_id: TokenId, receiver_id: AccountId) {
+        self.tokens.nft_transfer(receiver_id, token_id, None, None);
     }
 
-    // TODO: is_locked 체크 함수 필요한가?
-
-    /// Lock a token, making it soulbound and preventing further transfers.
-    pub fn lock_token(&mut self, token_id: TokenId) {
-        assert!(self.soulbound.get(&token_id).is_some(), "Token does not exist");
+    pub fn sbt_lock(&mut self, token_id: TokenId) {
         assert_eq!(env::predecessor_account_id(), self.tokens.owner_id, "Unauthorized");
-
-        self.soulbound.insert(&token_id, &true);
+        // TODO: need to set soulbound_tokens(token_id) as true
     }
 
-    /// Unlock a token, allowing it to be transferred again.
-    pub fn unlock_token(&mut self, token_id: TokenId) {
-        assert!(self.soulbound.get(&token_id).is_some(), "Token does not exist");
+    pub fn sbt_unlock(&mut self, token_id: TokenId) {
         assert_eq!(env::predecessor_account_id(), self.tokens.owner_id, "Unauthorized");
-
-        self.soulbound.insert(&token_id, &false);
-    }
-
-    pub fn sbt_transfer(
-        &mut self,
-        receiver_id: AccountId,
-        token_id: TokenId,
-        approval_id: Option<u64>,
-        memo: Option<String>
-    ) {
-        // TODO: is_locked 체크
-        assert!(, "Unauthorized");
-        assert_eq!(env::predecessor_account_id(), self.tokens.owner_id, "Unauthorized");
-
-        self.tokens.nft_transfer(receiver_id, token_id, approval_id, memo);
-    }
-}
-
-near_contract_standards::impl_non_fungible_token_core!(Contract, tokens);
-near_contract_standards::impl_non_fungible_token_approval!(Contract, tokens);
-near_contract_standards::impl_non_fungible_token_enumeration!(Contract, tokens);
-
-#[near_bindgen]
-impl NonFungibleTokenMetadataProvider for Contract {
-    fn nft_metadata(&self) -> NFTContractMetadata {
-        self.metadata.get().unwrap()
+        // TODO: need to set soulbound_tokens(token_id) as false
     }
 }
