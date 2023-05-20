@@ -44,12 +44,12 @@ export const ListNews = styled.div`
     left: 852px;
     top: 270px;
     right: 69px;
-    bottom: 174px;
+    bottom: 0px;
 `;
 
 export const Group41 = styled.div`
     width: 565px;
-    height: 30px;
+    height: 40px;
     position: absolute;
     left: 16px;
     top: 9px;
