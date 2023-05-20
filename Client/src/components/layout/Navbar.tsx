@@ -106,6 +106,9 @@ const Navbar = () => {
         if (modal) {
             modal.show();
         }
+        if (accounts.length > 0) {
+            window.location.href = `/account?username=${accounts[0].accountId}`;
+        }
     }, [modal]);
 
     const handleSignOut = useCallback(async () => {
@@ -146,9 +149,7 @@ const Navbar = () => {
                                 <Group21>
                                     <YellowBlock src="src/assets/profile/yellow_block_s.svg" />
                                 </Group21>
-                                <SupernicoNear>
-                                    {/* {data && <>{data.substr(0, 12)}.....</>} */}
-                                </SupernicoNear>
+                                <SupernicoNear>{accounts[0].accountId}</SupernicoNear>
                             </Group14>
                         </Frame16>
                     )}

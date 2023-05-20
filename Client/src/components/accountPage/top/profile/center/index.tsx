@@ -35,10 +35,8 @@ const CenterSection = () => {
     const [balance, setBalance] = useState("0");
     const [address, setAddress] = useState("");
     const [nickName, setNickName] = useState("Supernico");
-    const [loding, setLoding] = useState(false);
 
     const dbAccount = useGetAccountInfo({ accountInfo: query.accountname });
-
     const accountNear = useAccountDetail({ account: query.accountname });
 
     useEffect(() => {
@@ -51,9 +49,6 @@ const CenterSection = () => {
 
     useEffect(() => {
         const dbData = dbAccount.data;
-        const dbLoding = dbAccount.isLoading;
-        setLoding(dbLoding);
-        console.log(dbData);
 
         if (dbData) {
             setAddress(dbData.mypageInfo.userAddress);
@@ -66,7 +61,7 @@ const CenterSection = () => {
     return (
         <>
             <Supernico>
-                {loding ? (
+                {dbAccount.isLoading ? (
                     <>
                         <img
                             style={{ width: "30px", marginLeft: "120px", marginBottom: "5px" }}
@@ -99,7 +94,7 @@ const CenterSection = () => {
                 <Balance>Balance</Balance>
                 <Eth>
                     {balance != "0" ? (
-                        <>{balance} ETH</>
+                        <>{balance} NEAR</>
                     ) : (
                         <>
                             <img
