@@ -147,6 +147,7 @@ export const SupernicoNear = styled.span`
     height: 42px;
     line-height: 42px;
     color: var(--neutre-Black);
+    cursor: pointer;
 `;
 
 export const Frame16 = styled.div`
@@ -179,6 +180,7 @@ export const ArrowDownBox = styled.div`
     position: absolute;
     left: 336px;
     top: 18px;
+    cursor: pointer;
 `;
 
 export const Vector_0012 = styled.img`
