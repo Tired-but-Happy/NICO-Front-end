@@ -36,10 +36,10 @@ import {
     Tag_0014,
     Full,
 } from "src/components/accountPage/bottom/Contents.styled";
-import useGetAccountTx from "src/hooks/useGetAccountTx";
+import useFtTransfer from "src/hooks/useFtTransfer";
 
 const TokenTxnsSection = () => {
-    const { data } = useGetAccountTx({ account: "m0on.near" });
+    const { data, isLoading } = useFtTransfer({ contract: "m0on.near" });
     console.log(data);
 
     return (
@@ -49,12 +49,6 @@ const TokenTxnsSection = () => {
                 <Rectangle66 />
                 <Group45>
                     <ListProperyTransactions />
-                    <Component11>
-                        <Frame36>
-                            <Rectangle59 />
-                            <Fdfdfsfdfsf>Age</Fdfdfsfdfsf>
-                        </Frame36>
-                    </Component11>
                     <Component3>
                         <Frame36>
                             <Rectangle59_0001 />
@@ -65,94 +59,103 @@ const TokenTxnsSection = () => {
                 <Component75>
                     <Frame36>
                         <Rectangle59_0001 />
-                        <Fdfdfsfdfsf>Contract</Fdfdfsfdfsf>
+                        <Fdfdfsfdfsf>To</Fdfdfsfdfsf>
                     </Frame36>
                 </Component75>
                 <Component76>
                     <Frame36>
                         <Rectangle59_0001 />
-                        <Fdfdfsfdfsf>Method</Fdfdfsfdfsf>
+                        <Fdfdfsfdfsf>Quantity</Fdfdfsfdfsf>
                     </Frame36>
                 </Component76>
                 <Component85>
                     <Frame36>
                         <Rectangle59_0001 />
-                        <Fdfdfsfdfsf>Action</Fdfdfsfdfsf>
+                        <Fdfdfsfdfsf>Token</Fdfdfsfdfsf>
                     </Frame36>
                 </Component85>
                 <Component81>
                     <Frame36>
                         <Rectangle59 />
-                        <Fdfdfsfdfsf>Public</Fdfdfsfdfsf>
+                        <Fdfdfsfdfsf>Method</Fdfdfsfdfsf>
                     </Frame36>
                 </Component81>
                 <Component90>
                     <Frame36>
                         <Rectangle59 />
-                        <Fdfdfsfdfsf>Allowance</Fdfdfsfdfsf>
+                        <Fdfdfsfdfsf>Age</Fdfdfsfdfsf>
                     </Frame36>
                 </Component90>
                 <Component82>
                     <Frame36_0007>
-                        <Fdfdfsfdfsf_0007>Access</Fdfdfsfdfsf_0007>
+                        <Fdfdfsfdfsf_0007>From</Fdfdfsfdfsf_0007>
                     </Frame36_0007>
                 </Component82>
             </Category>
 
             {/* table */}
-            <ContentsAccessKey>
-                <Component67>
-                    <Section>
-                        <Rectangle59_0007 />
-                        <ContentText>...</ContentText>
-                    </Section>
-                </Component67>
-                <Component69>
-                    <Section_0001>
-                        <Rectangle59_0007 />
-                        <ContentText>any</ContentText>
-                    </Section_0001>
-                </Component69>
-                <Component86>
-                    <Section_0001>
-                        <Rectangle59_0007 />
-                        <ContentText>Created</ContentText>
-                    </Section_0001>
-                </Component86>
-                <Component91>
-                    <Section_0001>
-                        <Rectangle59_0010 />
-                        <ContentText>Created</ContentText>
-                    </Section_0001>
-                </Component91>
-                <Component71>
-                    <Section_0001>
-                        <Rectangle59_0010 />
-                        <ContentText_0004>a few seconds ago</ContentText_0004>
-                    </Section_0001>
-                </Component71>
-                <Component77>
-                    <Section_0001>
-                        <Rectangle59_0012 />
-                        <ContentText>ed25519dfld...</ContentText>
-                    </Section_0001>
-                </Component77>
-                <Component79>
-                    <Section_0001>
-                        <Rectangle59_0007 />
-                        <ContentText></ContentText>
-                    </Section_0001>
-                </Component79>
-                <Component83>
-                    <Section_0001>
-                        <Rectangle59_0007 />
-                        <ContentText>99.12345678</ContentText>
-                    </Section_0001>
-                </Component83>
-                <Tag_0014>
-                    <Full>full</Full>
-                </Tag_0014>
-            </ContentsAccessKey>
+            {/* table */}
+            {isLoading ? (
+                <>
+                    <img
+                        style={{ width: "300px", marginLeft: "900px", marginTop: "1050px" }}
+                        src="/src/assets/layout/loading.gif"
+                    />
+                </>
+            ) : (
+                <>
+                    <ContentsAccessKey>
+                        <Component67>
+                            <Section>
+                                <Rectangle59_0007 />
+                                <ContentText>
+                                    {data[0].transaction_id.substr(0, 8)}.....
+                                </ContentText>
+                            </Section>
+                        </Component67>
+                        <Component69>
+                            <Section_0001>
+                                <Rectangle59_0007 />
+                                <ContentText>{data[0].amount}</ContentText>
+                            </Section_0001>
+                        </Component69>
+                        <Component86>
+                            <Section_0001>
+                                <Rectangle59_0007 />
+                                <ContentText>{data[0].contract.substr(0, 8)}.....</ContentText>
+                            </Section_0001>
+                        </Component86>
+                        <Component91>
+                            <Section_0001>
+                                <Rectangle59_0010 />
+                                <ContentText>
+                                    {new Date(
+                                        Number(data[0].timestamp.toString().slice(0, 13))
+                                    ).toLocaleString()}
+                                </ContentText>
+                            </Section_0001>
+                        </Component91>
+                        <Component77>
+                            <Section_0001>
+                                <Rectangle59_0012 />
+                                <ContentText>transaction</ContentText>
+                            </Section_0001>
+                        </Component77>
+                        <Component79>
+                            <Section_0001>
+                                <Rectangle59_0007 />
+                                <ContentText>{data[0].receiver.substr(0, 15)}.....</ContentText>
+                            </Section_0001>
+                        </Component79>
+                        <Component83>
+                            <Section_0001>
+                                <Rectangle59_0007 />
+                                <ContentText>{data[0].sender.substr(0, 15)}.....</ContentText>
+                            </Section_0001>
+                        </Component83>
+                    </ContentsAccessKey>
+                </>
+            )}
         </>
     );
 };

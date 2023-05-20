@@ -38,7 +38,6 @@ import useGetAccountTx from "src/hooks/useGetAccountTx";
 
 const TransactionSection = () => {
     const { data, isLoading } = useGetAccountTx({ account: "m0on.near" });
-    console.log(data);
 
     return (
         <>
@@ -135,7 +134,6 @@ const TransactionSection = () => {
                         <Component71>
                             <Section_0001>
                                 <Rectangle59_0010 />
-
                                 <ContentText_0004>
                                     {new Date(
                                         Number(

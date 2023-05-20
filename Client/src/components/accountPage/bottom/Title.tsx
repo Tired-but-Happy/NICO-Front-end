@@ -1,5 +1,10 @@
 import React, { FC, useCallback } from "react";
-import { Frame41, Tag_0003, Tag_0006 } from "src/components/accountPage/bottom/Title.styled";
+import {
+    Frame41,
+    RootWrapperRectangle127,
+    Tag_0003,
+    Tag_0006,
+} from "src/components/accountPage/bottom/Title.styled";
 import { MyProfile } from "src/components/accountPage/top/TopSection.styled";
 
 interface childProps {
@@ -16,12 +21,8 @@ const Title: FC<childProps> = ({ setState, state }) => {
         setState(1);
     }, []);
 
-    const onClickNftTxns = useCallback(() => {
-        setState(2);
-    }, []);
-
     const onClickAccessKey = useCallback(() => {
-        setState(3);
+        setState(2);
     }, []);
 
     return (
@@ -48,25 +49,25 @@ const Title: FC<childProps> = ({ setState, state }) => {
                     <MyProfile>Token txns</MyProfile>
                 </Tag_0003>
                 <Tag_0003
-                    onClick={onClickNftTxns}
+                    onClick={onClickAccessKey}
                     style={
                         state !== 2
                             ? { cursor: "pointer" }
                             : { cursor: "default", backgroundColor: "var(--neutre-Grey-300)" }
                     }
                 >
-                    <MyProfile>NFT txns</MyProfile>
-                </Tag_0003>
-                <Tag_0006
-                    onClick={onClickAccessKey}
-                    style={
-                        state !== 3
-                            ? { cursor: "pointer" }
-                            : { cursor: "default", backgroundColor: "var(--neutre-Grey-300)" }
-                    }
-                >
                     <MyProfile>Access Key</MyProfile>
-                </Tag_0006>
+                </Tag_0003>
+                {state == 2 ? (
+                    <>
+                        <RootWrapperRectangle127
+                            src="/src/assets/layout/rectangle_pink.svg"
+                            alt="image of Rectangle127"
+                        />
+                    </>
+                ) : (
+                    <></>
+                )}
             </Frame41>
         </>
     );

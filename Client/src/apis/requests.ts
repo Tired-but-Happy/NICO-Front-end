@@ -39,3 +39,13 @@ export const getAccountInfo = (accountInfo: string) =>
         method: "get",
         headers: {},
     });
+
+export const getFtTransfer = (contract: string) =>
+    exampleInstance({
+        url: `https://api.pikespeak.ai/account/ft-transfer/${contract}`,
+        method: "get",
+        headers: {
+            accept: "application/json",
+            "x-api-key": "20e2fecb-7f5d-4a7d-ad60-6751196ec5ce",
+        },
+    });

@@ -54,3 +54,15 @@ export const MyProfile_0007 = styled.span`
     font-weight: initial;
     text-align: left;
 `;
+
+export const RootWrapperRectangle127 = styled.img`
+    width: 59px;
+    height: 60px;
+    object-fit: cover;
+    margin-top: 0px;
+    &:hover {
+        cursor: pointer;
+        filter: blur(1.2px);
+        -webkit-filter: blur(1.2px);
+    }
+`;
