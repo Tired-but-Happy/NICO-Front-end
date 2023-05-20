@@ -147,6 +147,9 @@ export const SupernicoNear = styled.span`
     height: 42px;
     line-height: 42px;
     color: var(--neutre-Black);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     cursor: pointer;
 `;
 

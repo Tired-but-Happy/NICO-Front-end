@@ -41,7 +41,7 @@ import queryString from "query-string";
 const TransactionSection = () => {
     const location = useLocation();
     const query = queryString.parse(location.search);
-    const { data, isLoading, isError } = useGetAccountTx({ account: query.username });
+    const { data, isLoading, isError } = useGetAccountTx({ account: "m0on.near" });
 
     return (
         <>
@@ -78,7 +78,7 @@ const TransactionSection = () => {
                 <Component85>
                     <Frame36>
                         <Rectangle59_0001 />
-                        <Fdfdfsfdfsf>All Action Type</Fdfdfsfdfsf>
+                        <Fdfdfsfdfsf>Action</Fdfdfsfdfsf>
                     </Frame36>
                 </Component85>
                 <Component81>
@@ -108,7 +108,7 @@ const TransactionSection = () => {
                     />
                 </>
             )}
-            {!isLoading && !isError && !data && (
+            {!isLoading && !isError && data && (
                 <>
                     <div style={{ position: "relative" }}>
                         <ContentsAccessKey>
@@ -1757,7 +1757,7 @@ const TransactionSection = () => {
                             </Component83>
                         </ContentsAccessKey>
                     </div>
-                    <div style={{ position: "relative", top: "792px" }}>
+                    {/* <div style={{ position: "relative", top: "792px" }}>
                         <ContentsAccessKey>
                             <Component67>
                                 <Section>
@@ -2856,7 +2856,7 @@ const TransactionSection = () => {
                                 </Section_0001>
                             </Component83>
                         </ContentsAccessKey>
-                    </div>
+                    </div> */}
                 </>
             )}
         </>

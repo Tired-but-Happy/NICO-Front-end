@@ -40,7 +40,6 @@ import useGetAccessKeys from "src/hooks/useGetAccessKeys";
 
 const AccessKeySection = () => {
     const { data, isLoading } = useGetAccessKeys({ account: "m0on.near" });
-    console.log(data);
 
     return (
         <>

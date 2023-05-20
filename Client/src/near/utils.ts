@@ -9,7 +9,6 @@ const getAccountDetail = async (accountId: string) => {
         account_id: accountId,
         finality: "final",
     });
-    console.log(accountDetail);
 };
 
 export default getAccountDetail;
