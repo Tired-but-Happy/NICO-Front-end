@@ -5,7 +5,7 @@ export const SearchTextField1232 = styled.div`
     height: 193px;
     position: absolute;
     left: calc((calc((50% + 1px)) - 617px));
-    top: 285px;
+    top: 120px;
 `;
 
 export const Group6 = styled.div`

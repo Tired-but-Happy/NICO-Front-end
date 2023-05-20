@@ -1,3 +1,5 @@
+import { Link, useLocation } from "react-router-dom";
+
 import {
     TwitterIconBox,
     Group51,
@@ -9,8 +11,12 @@ import {
 } from "src/components/layout/Footer.styled";
 
 const Footer = () => {
+    const location = useLocation();
+
+    const isHomePage = location.pathname === "/";
+    const isAboutPage = location.pathname === "/about";
     return (
-        <Group51>
+        <Group51 style={{ top: isHomePage ? "800px" : isAboutPage ? "3492px" : "2244px" }}>
             <Rectangle25 />
             <TwitterIconBox>
                 <FooterIcon xmlns="src/assets/layout/twitter_vector.svg">
@@ -20,7 +26,9 @@ const Footer = () => {
                     />
                 </FooterIcon>
             </TwitterIconBox>
-            <WhatIsNico>What is NICO?</WhatIsNico>
+            <Link to="http://localhost:5173/about">
+                <WhatIsNico>What is NICO?</WhatIsNico>
+            </Link>
             <GithubIconBox>
                 <FooterIcon xmlns="src/assets/layout/github_vector.svg">
                     <path

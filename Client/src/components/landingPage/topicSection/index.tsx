@@ -11,7 +11,7 @@ import NewsSection from "src/components/landingPage/topicSection/nearNews";
 
 const TopicSection = () => {
     return (
-        <Component2>
+        <Component2 style={{ transform: "scale(0.9)" }}>
             {/* background */}
             <Background />
 
