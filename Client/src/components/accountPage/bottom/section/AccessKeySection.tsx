@@ -36,10 +36,10 @@ import {
     Tag_0014,
     Full,
 } from "src/components/accountPage/bottom/Contents.styled";
-import useGetAccountTx from "src/hooks/useGetAccountTx";
+import useGetAccessKeys from "src/hooks/useGetAccessKeys";
 
 const AccessKeySection = () => {
-    const { data, isLoading } = useGetAccountTx({ account: "m0on.near" });
+    const { data, isLoading } = useGetAccessKeys({ account: "m0on.near" });
     console.log(data);
 
     return (

@@ -17,7 +17,7 @@ export const NaN_0001 = styled.div`
     height: 360px;
     position: absolute;
     left: 155px;
-    top: 236px;
+    top: 150px;
 `;
 
 export const Group79 = styled.div`

@@ -5,3 +5,7 @@ declare interface AccountData {
 declare interface AccountInfo {
     accountInfo: string | (string | null)[] | null;
 }
+
+declare interface ContractData {
+    contract: string | undefined;
+}

@@ -172,8 +172,8 @@ export const Heart32 = styled.div`
     width: 32px;
     height: 64px;
     position: absolute;
-    left: 0px;
-    top: 2px;
+    left: -px;
+    top: 50px;
 `;
 
 export const IconHeart = styled.div`
@@ -200,7 +200,7 @@ export const Comment32 = styled.div`
     height: 64px;
     position: absolute;
     left: 52px;
-    top: 0px;
+    top: 47px;
 `;
 
 export const IcRoundChat = styled.div`
@@ -1265,12 +1265,12 @@ export const _0000123 = styled.span`
 
 export const List1040_0008 = styled.div`
     width: 1040px;
-    height: 1000px;
+    height: 1500px;
     overflow: hidden;
     background-color: white;
     position: absolute;
     left: 214px;
-    top: 786px;
+    top: 676px;
 `;
 
 export const Amounts_0_3HAgo_0008 = styled.span`
@@ -1291,15 +1291,15 @@ export const Group60_0008 = styled.div`
     height: 143px;
     position: absolute;
     left: 863px;
-    top: 13px;
+    top: 18px;
 `;
 
 export const Group59_0008 = styled.div`
     width: 84px;
     height: 64px;
     position: absolute;
-    left: 37px;
-    top: 79px;
+    left: 18px;
+    top: 6px;
 `;
 
 export const Btn44_0008 = styled.div`
@@ -1352,7 +1352,7 @@ export const Frame61 = styled.div`
     width: 230px;
     height: 26px;
     left: 214.44px;
-    top: 732px;
+    top: 622px;
 `;
 
 export const TagSort = styled.div`
@@ -1404,7 +1404,7 @@ export const Group105 = styled.div`
     width: 1276px;
     height: 62px;
     left: 214px;
-    top: 656px;
+    top: 550px;
 `;
 
 export const Frame41 = styled.div`
