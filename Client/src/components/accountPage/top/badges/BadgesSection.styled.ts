@@ -224,3 +224,22 @@ export const BabyNewbie = styled.span`
     line-height: 24px;
     color: var(--neutre-Black);
 `;
+
+export const GetFirstSBT = styled.span`
+    position: absolute;
+    width: 278px;
+    height: 30px;
+    left: 82px;
+    top: 329px;
+
+    /* body/1 */
+
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+
+    color: #000000;
+`;
