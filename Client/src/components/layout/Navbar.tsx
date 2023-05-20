@@ -106,9 +106,6 @@ const Navbar = () => {
         if (modal) {
             modal.show();
         }
-        if (accounts.length > 0) {
-            window.location.href = `/account?username=${accounts[0].accountId}`;
-        }
     }, [modal]);
 
     const handleSignOut = useCallback(async () => {
@@ -141,15 +138,21 @@ const Navbar = () => {
                             <SignIn>Sign in</SignIn>
                         </Frame1>
                     ) : (
-                        <Frame16 onClick={handleSignOut}>
+                        <Frame16>
                             <Group14>
-                                <ArrowDownBox>
+                                <ArrowDownBox onClick={handleSignOut}>
                                     <Vector_0012 src="src/assets/layout/arrow_down.svg" />
                                 </ArrowDownBox>
                                 <Group21>
                                     <YellowBlock src="src/assets/profile/yellow_block_s.svg" />
                                 </Group21>
-                                <SupernicoNear>{accounts[0].accountId}</SupernicoNear>
+                                <SupernicoNear
+                                    onClick={() => {
+                                        window.location.href = `/account?username=${accounts[0].accountId}`;
+                                    }}
+                                >
+                                    {accounts[0].accountId}
+                                </SupernicoNear>
                             </Group14>
                         </Frame16>
                     )}

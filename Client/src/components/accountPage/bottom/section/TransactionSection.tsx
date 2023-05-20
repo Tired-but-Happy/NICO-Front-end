@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import {
     Category,
     Rectangle66,
@@ -35,9 +36,12 @@ import {
     Component83,
 } from "src/components/accountPage/bottom/Contents.styled";
 import useGetAccountTx from "src/hooks/useGetAccountTx";
+import queryString from "query-string";
 
 const TransactionSection = () => {
-    const { data, isLoading } = useGetAccountTx({ account: "m0on.near" });
+    const location = useLocation();
+    const query = queryString.parse(location.search);
+    const { data, isLoading, isError } = useGetAccountTx({ account: "m0on.near" });
 
     return (
         <>
@@ -74,7 +78,7 @@ const TransactionSection = () => {
                 <Component85>
                     <Frame36>
                         <Rectangle59_0001 />
-                        <Fdfdfsfdfsf>All Action Type</Fdfdfsfdfsf>
+                        <Fdfdfsfdfsf>Action</Fdfdfsfdfsf>
                     </Frame36>
                 </Component85>
                 <Component81>
@@ -95,16 +99,16 @@ const TransactionSection = () => {
                     </Frame36_0007>
                 </Component82>
             </Category>
-
             {/* table */}
-            {isLoading ? (
+            {isLoading && (
                 <>
                     <img
                         style={{ width: "300px", marginLeft: "900px", marginTop: "1050px" }}
                         src="/src/assets/layout/loading.gif"
                     />
                 </>
-            ) : (
+            )}
+            {!isLoading && !isError && data && (
                 <>
                     <div style={{ position: "relative" }}>
                         <ContentsAccessKey>
@@ -1753,7 +1757,7 @@ const TransactionSection = () => {
                             </Component83>
                         </ContentsAccessKey>
                     </div>
-                    <div style={{ position: "relative", top: "792px" }}>
+                    {/* <div style={{ position: "relative", top: "792px" }}>
                         <ContentsAccessKey>
                             <Component67>
                                 <Section>
@@ -2852,7 +2856,7 @@ const TransactionSection = () => {
                                 </Section_0001>
                             </Component83>
                         </ContentsAccessKey>
-                    </div>
+                    </div> */}
                 </>
             )}
         </>
