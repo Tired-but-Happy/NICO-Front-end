@@ -218,7 +218,7 @@ export const Fdfdfsfdfsf_0007 = styled.span`
     font-family: Poppins, sans-serif;
     font-weight: initial;
     text-align: left;
-    width: 125px;
+    width: 145px;
     min-height: 64px;
     align-self: stretch;
     flex-shrink: 0;
