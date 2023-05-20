@@ -24,7 +24,17 @@ import {
     ProfileText,
 } from "src/components/accountPage/top/badges/BadgesSection.styled";
 
+import { useContext, useEffect } from "react";
+import { NearContext } from "src/NearContext";
+
 const BadgesSection = () => {
+    const { walletSelector, account } = useContext(NearContext);
+
+    useEffect(() => {
+        console.log("*****");
+        console.log(walletSelector?.isSignedIn());
+    }, [walletSelector, account]);
+
     return (
         <>
             <Frame58>
