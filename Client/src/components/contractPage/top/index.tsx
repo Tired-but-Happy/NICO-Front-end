@@ -134,14 +134,8 @@ const TopSection = () => {
                         </HozitontalLines>
                     </ChartLines>
                     <Lines>
-                        <Line2_0001
-                            src="grida://assets-reservation/images/370:43650"
-                            alt="image of Line2"
-                        />
-                        <Line1_0001
-                            src="grida://assets-reservation/images/370:43651"
-                            alt="image of Line1"
-                        />
+                        <Line2_0001 src="Line2.png" alt="image of Line2" />
+                        <Line1_0001 src="Line1.png" alt="image of Line1" />
                     </Lines>
                     <Divider_0004 />
                     <Identifiers>
@@ -189,14 +183,8 @@ const TopSection = () => {
                         </HozitontalLines>
                     </ChartLines>
                     <Lines>
-                        <Line2_0001
-                            src="grida://assets-reservation/images/370:43688"
-                            alt="image of Line2"
-                        />
-                        <Line1_0001
-                            src="grida://assets-reservation/images/370:43689"
-                            alt="image of Line1"
-                        />
+                        <Line2_0001 src="Line2.png" alt="image of Line2" />
+                        <Line1_0001 src="Line1.png" alt="image of Line1" />
                     </Lines>
                     <Divider_0004 />
                     <Identifiers>
