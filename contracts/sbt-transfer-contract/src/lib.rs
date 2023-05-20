@@ -80,16 +80,21 @@ impl Contract {
         token_metadata: TokenMetadata,
         badge_type: BadgeType
     ) -> Token {
-        let predecessor = env::predecessor_account_id();
         assert!(badge_type != BadgeType::Nothing, "Wrong Badge Type");
-        assert!(self.badge_check(predecessor, badge_type), "You already have it");
+        assert!(!self.has_badge(&receiver_id, &badge_type), "You already have it");
         self.token_id_counter += 1;
         let token_id = self.token_id_counter.to_string();
+        self.badges.insert(&receiver_id, &badge_type);
+
         self.tokens.internal_mint(token_id, receiver_id, Some(token_metadata))
     }
 
-    pub fn badge_check(&self, account_id: AccountId, badge_type: BadgeType) -> bool {
-        self.badges.get(&account_id) == Some(badge_type)
+    pub fn has_badge(&self, account_id: &AccountId, badge_type: &BadgeType) -> bool {
+        self.badges.get(&account_id).as_ref() == Some(badge_type)
+    }
+
+    pub fn badge_view(&self, account_id: AccountId) -> Option<BadgeType> {
+        self.badges.get(&account_id)
     }
 }
 

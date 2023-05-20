@@ -1,5 +1,5 @@
 #!/bin/sh
 
-echo ">> Calling nft_mint"
+echo ">> Calling sbt_mint"
 
-near call $ID nft_mint '{"token_id": "1", "receiver_id": "'$ID'", "is_locked": true, "token_metadata": '"`cat token.json`}" --accountId $ID --deposit 0.1
+near call $ID sbt_mint '{"receiver_id": "'$ID'", "badge_type": "Newbie" , "token_metadata": '"`cat token.json`}" --accountId $ID --deposit 0.1
