@@ -8,7 +8,7 @@ const MainLayout = () => {
 
     return (
         <>
-            {location.pathname == "/account" ? <></> : <BackGround />}
+            {location.pathname == "/account" || "/contract" ? <></> : <BackGround />}
 
             <Navbar />
             <Outlet />
