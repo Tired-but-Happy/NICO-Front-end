@@ -85,10 +85,6 @@ const Navbar = () => {
             setWalletSelector(_selector);
             setAccount(state.accounts);
         }
-        const isAccountPage = window.location.search.includes("username");
-
-        if (!isAccountPage && state.accounts.length > 0)
-            window.location.href = `/account?username=${state.accounts[0].accountId}`;
     }, []);
 
     useEffect(() => {
@@ -110,11 +106,10 @@ const Navbar = () => {
         if (modal) {
             modal.show();
         }
+        if (accounts.length > 0) {
+            window.location.href = `/account?username=${accounts[0].accountId}`;
+        }
     }, [modal]);
-
-    useEffect(() => {
-        console.log("*********");
-    }, []);
 
     const handleSignOut = useCallback(async () => {
         if (selector) {
