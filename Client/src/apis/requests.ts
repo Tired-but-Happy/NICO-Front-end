@@ -23,6 +23,16 @@ export const postLogin = (userAddress: string) =>
         },
     });
 
+export const getMyPage = (account: string) =>
+    exampleInstance({
+        url: `/mypage`,
+        method: "get",
+        headers: {},
+        data: {
+            account,
+        },
+    });
+
 export const getAccountTx = (account: string) =>
     exampleInstance({
         url: `https://api.pikespeak.ai/account/transactions/${account}`,
