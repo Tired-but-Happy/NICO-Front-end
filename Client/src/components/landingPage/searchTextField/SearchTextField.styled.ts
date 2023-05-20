@@ -60,20 +60,24 @@ export const AllFilter = styled.span`
     bottom: 26px;
 `;
 
-export const SearchBy = styled.span`
-    color: var(--neutre-Grey-250);
+export const SearchBy = styled.input`
+    color: var(--neutre-Black);
     text-overflow: ellipsis;
     font-size: 28px;
     font-family: Poppins, sans-serif;
     font-style: normal;
     font-weight: 600;
     text-align: left;
-    min-height: 42px;
+    height: 42px;
     position: absolute;
     left: 218px;
-    top: 32px;
+    top: 26px;
     right: 266px;
     bottom: 28px;
+    border: none;
+    ::placeholder {
+        color: var(--neutre-Grey-250);
+    }
 `;
 
 export const Frame18 = styled.div`

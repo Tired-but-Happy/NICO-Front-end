@@ -36,8 +36,8 @@ const CenterSection = () => {
     const [address, setAddress] = useState("");
     const [nickName, setNickName] = useState("Supernico");
 
-    const dbAccount = useGetAccountInfo({ accountInfo: query.accountname });
-    const accountNear = useAccountDetail({ account: query.accountname });
+    const dbAccount = useGetAccountInfo({ accountInfo: query.username });
+    const accountNear = useAccountDetail({ account: query.username });
 
     useEffect(() => {
         const accountData = accountNear.data;
@@ -48,12 +48,12 @@ const CenterSection = () => {
     }, [accountNear]);
 
     useEffect(() => {
-        const dbData = dbAccount.data;
+        const dbData = dbAccount?.data;
 
         if (dbData) {
-            setAddress(dbData.mypageInfo.userAddress);
-            if (dbData.mypageInfo.nickname) {
-                setNickName(dbData.mypageInfo.nickname);
+            setAddress(dbData.mypageInfo?.userAddress);
+            if (dbData.mypageInfo?.nickname) {
+                setNickName(dbData.mypageInfo?.nickname);
             }
         }
     }, [dbAccount.isLoading]);

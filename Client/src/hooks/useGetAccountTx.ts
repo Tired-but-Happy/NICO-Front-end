@@ -2,7 +2,7 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { getAccountTx } from "src/apis";
 import { GET_ACCOUNT_TX } from "src/constants";
 
-const useGetAccountTx = ({ account }: AccountData): UseQueryResult<Account[]> =>
+const useGetAccountTx = ({ account }: AccountData): UseQueryResult =>
     useQuery({
         queryKey: [GET_ACCOUNT_TX, account],
         queryFn: () => {
