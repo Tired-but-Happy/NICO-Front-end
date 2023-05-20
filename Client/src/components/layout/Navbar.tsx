@@ -27,6 +27,7 @@ import {
 } from "src/components/layout/Navbar.styled";
 import { CONTRACT_ID } from "src/utils/constants";
 import usePostLogin from "src/hooks/useText";
+import { Link } from "react-router-dom";
 
 declare global {
     interface Window {
@@ -115,14 +116,16 @@ const Navbar = () => {
     return (
         <>
             <NavbarBefore>
-                <Nico src="src/assets/layout/nico_icon.svg" />
+                <Link to="http://localhost:5173/">
+                    <Nico src="src/assets/layout/nico_icon.svg" />
+                </Link>
                 <Frame6>
                     <Frame5>
-                        <About>About</About>
+                        <Link to="http://localhost:5173/about">
+                            <About>About</About>
+                        </Link>
                     </Frame5>
-                    <Frame5>
-                        <Blockchain>Blockchain</Blockchain>
-                    </Frame5>
+
                     {Array.isArray(accounts) && accounts.length === 0 ? (
                         <Frame1 onClick={onClickSignIn}>
                             <SignIn>Sign in</SignIn>

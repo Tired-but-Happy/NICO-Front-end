@@ -33,12 +33,12 @@ export const Frame6 = styled.div`
     position: absolute;
     top: 0px;
     right: 68px;
-    width: 624px;
+    width: 800px;
     height: 112px;
 `;
 
 export const Frame5 = styled.div`
-    width: 180px;
+    width: 220px;
     height: 112px;
     overflow: hidden;
     background-color: var(--neutre-White);
@@ -47,7 +47,7 @@ export const Frame5 = styled.div`
 
 export const About = styled.span`
     position: absolute;
-    width: 87px;
+    width: 100px;
     height: 42px;
     left: calc(50% - 87px / 2 + 0.5px);
     top: calc(50% - 42px / 2);

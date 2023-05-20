@@ -1265,12 +1265,12 @@ export const _0000123 = styled.span`
 
 export const List1040_0008 = styled.div`
     width: 1040px;
-    height: 188px;
+    height: 1000px;
     overflow: hidden;
     background-color: white;
     position: absolute;
     left: 214px;
-    top: 986px;
+    top: 786px;
 `;
 
 export const Amounts_0_3HAgo_0008 = styled.span`

@@ -4,10 +4,11 @@ import LatestInfoTitle from "src/components/landingPage/latestInfoSection/Latest
 
 const LatestInfoSection = () => {
     return (
-        <Group42>
-            <LatestInfoTitle />
-            <LatestInfoContent />
-        </Group42>
+        // <Group42>
+        //     <LatestInfoTitle />
+        //     <LatestInfoContent />
+        // </Group42>
+        <div></div>
     );
 };
 

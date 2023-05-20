@@ -2,16 +2,17 @@ import { styled } from "styled-components";
 
 export const Group51 = styled.div`
     width: 1920px;
-    height: 144px;
+    height: 14px;
     position: absolute;
     left: var(--main-left);
     top: 2244px;
+    z-index: 2;
 `;
 
 export const Rectangle25 = styled.div`
     width: 1920px;
-    height: 144px;
-    box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.25);
+    height: 95px;
+    box-shadow: 0px -4px 1px rgba(0, 0, 0, 0.25);
     background-color: white;
     position: absolute;
     left: 0px;
@@ -24,7 +25,7 @@ export const TwitterIconBox = styled.div`
     overflow: hidden;
     position: absolute;
     left: 146px;
-    top: 42px;
+    top: 22px;
 `;
 
 export const FooterIcon = styled.svg`
@@ -44,7 +45,7 @@ export const WhatIsNico = styled.span`
     text-decoration: underline;
     position: absolute;
     left: 1572px;
-    top: 50px;
+    top: 26px;
     width: 201px;
     height: 42px;
     line-height: 42px;
@@ -57,7 +58,7 @@ export const GithubIconBox = styled.div`
     overflow: hidden;
     position: absolute;
     left: 259px;
-    top: 42px;
+    top: 22px;
 `;
 
 export const RedBlock = styled.img`
@@ -66,5 +67,5 @@ export const RedBlock = styled.img`
     object-fit: cover;
     position: absolute;
     left: 1501px;
-    top: 44px;
+    top: 25px;
 `;

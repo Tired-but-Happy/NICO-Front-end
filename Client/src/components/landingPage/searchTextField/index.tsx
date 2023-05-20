@@ -13,7 +13,7 @@ import {
 
 const SearchTextField = () => {
     return (
-        <SearchTextField1232>
+        <SearchTextField1232 style={{ transform: "scale(0.9)" }}>
             <SearchTitle>What are you looking for?</SearchTitle>
 
             <Group6>

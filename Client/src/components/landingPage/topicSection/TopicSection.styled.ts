@@ -39,7 +39,7 @@ export const Component2 = styled.div`
     height: 492px;
     position: absolute;
     left: calc((calc((50% + 0px)) - 761px));
-    top: 526px;
+    top: 300px;
 `;
 
 export const Background = styled.div`
