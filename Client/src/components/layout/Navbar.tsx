@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useCallback, useState, useContext } from "react";
 import type { AccountState, WalletSelector } from "@near-wallet-selector/core";
 import { setupWalletSelector } from "@near-wallet-selector/core";
 import { WalletSelectorModal, setupModal } from "@near-wallet-selector/modal-ui";
@@ -27,6 +27,7 @@ import {
 } from "src/components/layout/Navbar.styled";
 import { CONTRACT_ID } from "src/utils/constants";
 import usePostLogin from "src/hooks/useText";
+import { NearContext } from "src/NearContext";
 
 declare global {
     interface Window {
@@ -36,6 +37,8 @@ declare global {
 }
 
 const Navbar = () => {
+    const { setWalletSelector, setAccount } = useContext(NearContext);
+
     const [selector, setSelector] = useState<WalletSelector | null>(null);
     const [modal, setModal] = useState<WalletSelectorModal | null>(null);
     const [accounts, setAccounts] = useState<Array<AccountState>>([]);
@@ -77,6 +80,10 @@ const Navbar = () => {
         setSelector(_selector);
         setModal(_modal);
         setLoading(false);
+        if (setWalletSelector && setAccount) {
+            setWalletSelector(_selector);
+            setAccount(state.accounts);
+        }
     }, []);
 
     useEffect(() => {
