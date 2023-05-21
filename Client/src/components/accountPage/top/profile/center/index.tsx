@@ -1,5 +1,3 @@
-import { useLocation } from "react-router-dom";
-import queryString from "query-string";
 import {
     Balance,
     Frame24,
@@ -21,22 +19,20 @@ import {
     Group23,
     WalletAccount,
     WalletIcon,
-    CopyIcon,
-    CopyBox,
     ArrowDownIcon,
 } from "src/components/accountPage/top/profile/center/CenterSection.styled";
-import useGetAccountInfo from "src/hooks/useAccountInfo";
 import useAccountDetail from "src/hooks/useAccountDetail";
 import { useEffect, useState } from "react";
+import queryString from "query-string";
+import { useLocation } from "react-router-dom";
 
-const CenterSection = () => {
+const CenterSection = ({ dbAccount }) => {
     const location = useLocation();
     const query = queryString.parse(location.search);
     const [balance, setBalance] = useState("0");
     const [address, setAddress] = useState("");
     const [nickName, setNickName] = useState("Supernico");
 
-    const dbAccount = useGetAccountInfo({ accountInfo: query.username });
     const accountNear = useAccountDetail({ account: query.username });
 
     useEffect(() => {
@@ -80,7 +76,7 @@ const CenterSection = () => {
             <Group24>
                 <WalletIcon src="src/assets/accountPage/mdi_wallet.svg" />
                 <Group23>
-                    <WalletAccount>{query.accountname}</WalletAccount>
+                    <WalletAccount>{query.username}</WalletAccount>
                 </Group23>
                 {/* <CopyBox>
                     <CopyIcon src="src/assets/accountPage/ph_copy.svg" />
