@@ -25,7 +25,9 @@ Blockchain | 윤석훈 | <a href="https://github.com/imysh578"><img src="https:/
 ## NICO 사이트 미리보기
 ##### * 사진을 클릭하면 크게 볼 수 있어요!!
 
-|      | 페이지 |      | 페이지 |
-----|----------------|----|----------------
-지갑 연결  | ![connect_wallet](https://github.com/berrypjh/Bitcoin-Blockchain/assets/89543695/ee92c52f-59f5-41ca-8883-75b43ddcb745) | 나의 정보 및 분기별 자주 사용한 Dapp 조회  | ![transaction_list](https://github.com/berrypjh/Bitcoin-Blockchain/assets/89543695/4cf25d10-1c7a-4b24-b9a5-3dd513f4737d)
-SBT 뱃지 민팅  | ![SBT token mint](https://github.com/berrypjh/Bitcoin-Blockchain/assets/89543695/c8f5f784-23ef-4130-8c5b-36f6ba659cf9) | About page | ![about](https://github.com/berrypjh/Bitcoin-Blockchain/assets/89543695/ae1fc056-2e54-4f6c-832e-10408f9cceec)
+|      | 페이지 |
+----|----------
+지갑 연결  | ![connect_wallet](https://github.com/berrypjh/Bitcoin-Blockchain/assets/89543695/ee92c52f-59f5-41ca-8883-75b43ddcb745) 
+나의 정보 및 분기별 자주 사용한 Dapp 조회  | ![transaction_list](https://github.com/berrypjh/Bitcoin-Blockchain/assets/89543695/4cf25d10-1c7a-4b24-b9a5-3dd513f4737d)
+SBT 뱃지 민팅  | ![SBT token mint](https://github.com/berrypjh/Bitcoin-Blockchain/assets/89543695/c8f5f784-23ef-4130-8c5b-36f6ba659cf9) 
+About page | ![about](https://github.com/berrypjh/Bitcoin-Blockchain/assets/89543695/ae1fc056-2e54-4f6c-832e-10408f9cceec)
